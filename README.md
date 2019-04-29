@@ -30,11 +30,11 @@ As for dueling DQN, we add one more layer to implement state value and advantage
 
 In practice, there are two Q networks, which is Q **target network** and Q **evaluation network** respectively. They share the same structure but different values of parameters. The former is the network whose parameters are set to be trainable so that it can keep training and updating. By contrast, the latter is used to compute the loss for every action during training, so the parameters are not updating during the training process. Instead, it periodically updates to the values of Q target network. In this case, we assign values to it every 5000 frames The reason why we use two networks is to avoid the network destabilized by falling into the feedback loops between the target and estimated Q values. We initialize the weights of the Q evaluation network with truncated normal distribution whose mean is zero and covariance is set to be 0.01. Meanwhile, the weights of the Q target network are assigned by the same values.
 
-* DQN: $Y_t^{DQN} \equiv R_{t+1}+\gamma \max_a Q(s_{t+1},a;\theta_t^{-})$  
+* DQN: ![](https://latex.codecogs.com/png.latex?Y_t%5E%7BDQN%7D%20%5Cequiv%20R_%7Bt&plus;1%7D&plus;%5Cgamma%20%5Cmax_a%20Q%28s_%7Bt&plus;1%7D%2Ca%3B%5Ctheta_t%5E%7B-%7D%29)
   
-* Double DQN: $Y^{DoubleDQN}_t \equiv R_{t+1}+ \gamma Q(s_{t+1},\arg\max_{a}Q(s_{t+1},a;\theta_t);\theta^\prime_t)$  
+* Double DQN: ![](https://latex.codecogs.com/png.latex?Y%5E%7BDoubleDQN%7D_t%20%5Cequiv%20R_%7Bt&plus;1%7D&plus;%20%5Cgamma%20Q%28s_%7Bt&plus;1%7D%2C%5Carg%5Cmax_%7Ba%7DQ%28s_%7Bt&plus;1%7D%2Ca%3B%5Ctheta_t%29%3B%5Ctheta%5E%5Cprime_t%29)
 
-* Dueling DQN: $Q(s,a;\theta,\alpha,\beta) = V(s;\theta,\beta)+(A(s,a;\theta,\alpha)-\frac{1}{\mathcal{A}}\sum_{a'}A(s,a';\theta,\alpha))$
+* Dueling DQN: ![](https://latex.codecogs.com/png.latex?Q%28s%2Ca%3B%5Ctheta%2C%5Calpha%2C%5Cbeta%29%20%3D%20V%28s%3B%5Ctheta%2C%5Cbeta%29&plus;%28A%28s%2Ca%3B%5Ctheta%2C%5Calpha%29-%5Cfrac%7B1%7D%7B%5Cmathcal%7BA%7D%7D%5Csum_%7Ba%27%7DA%28s%2Ca%27%3B%5Ctheta%2C%5Calpha%29%29)
 
 ### Implementation for Double and Dueling DQN
 
@@ -44,9 +44,9 @@ As for dueling DQN, instead of the 5-layer architecture we mentioned previously,
 
 ### Parameter Setup
 
-For optimization part, we use RMSProp algorithm to optimize the model with learning rate $2.5\times10^{-4}$. The batch size is set to be 32. Also, the $\gamma$ value is 0.99. The behavior policy during learning is $\epsilon$ greedy which means that the algorithm sometimes chooses the action randomly according to a decreasing $\epsilon$ value. The $\epsilon$ denotes the amount of randomness in our policy (action is greedy with probability (1 − $\epsilon$) and random with probability $\epsilon$), and it is decreased linearly from 1.0 to 0.1 within 106 frames and eventually fixed at 0.1. This enables the process start with a fairly randomized policy and later slowly move towards a deterministic policy.  
+For optimization part, we use RMSProp algorithm to optimize the model with learning rate 2.5x10^-4. The batch size is set to be 32. Also, the γ value is 0.99. The behavior policy during learning is ε greedy which means that the algorithm sometimes chooses the action randomly according to a decreasing ε value. The ε denotes the amount of randomness in our policy (action is greedy with probability (1 − ε) and random with probability ε), and it is decreased linearly from 1.0 to 0.1 within 106 frames and eventually fixed at 0.1. This enables the process start with a fairly randomized policy and later slowly move towards a deterministic policy.  
 
-We also implement experience replay in the learning process. We initialize te replay memory buffer to capacity $10^5$, and the last 105 frames are stored into the buffer and sampled to train the network. Its randomness improves the policy, since it leads to different behavior and explore actions closer to optimal ones. We use one **GTX 1080 Ti** and **32 GB RAM** to train the model for 12 hours. Due to the hardware limitation, we are unable to train for longer time.
+We also implement experience replay in the learning process. We initialize te replay memory buffer to capacity 10^5, and the last 105 frames are stored into the buffer and sampled to train the network. Its randomness improves the policy, since it leads to different behavior and explore actions closer to optimal ones. We use one **GTX 1080 Ti** and **32 GB RAM** to train the model for 12 hours. Due to the hardware limitation, we are unable to train for longer time.
 
 ### Evaluation
 
