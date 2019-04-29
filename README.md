@@ -32,9 +32,9 @@ In practice, there are two Q networks, which is Q **target network** and Q **eva
 
 * DQN: ![](https://latex.codecogs.com/png.latex?Y_t%5E%7BDQN%7D%20%5Cequiv%20R_%7Bt&plus;1%7D&plus;%5Cgamma%20%5Cmax_a%20Q%28s_%7Bt&plus;1%7D%2Ca%3B%5Ctheta_t%5E%7B-%7D%29)
   
-* Double DQN: ![](https://latex.codecogs.com/png.latex?Y%5E%7BDoubleDQN%7D_t%20%5Cequiv%20R_%7Bt&plus;1%7D&plus;%20%5Cgamma%20Q%28s_%7Bt&plus;1%7D%2C%5Carg%5Cmax_%7Ba%7DQ%28s_%7Bt&plus;1%7D%2Ca%3B%5Ctheta_t%29%3B%5Ctheta%5E%5Cprime_t%29)
+* Double DQN: ![](https://latex.codecogs.com/png.latex?%5Cinline%20Y%5E%7BDoubleDQN%7D_t%20%5Cequiv%20R_%7Bt&plus;1%7D&plus;%20%5Cgamma%20Q%28s_%7Bt&plus;1%7D%2C%5Carg%5Cmax_%7Ba%7DQ%28s_%7Bt&plus;1%7D%2Ca%3B%5Ctheta_t%29%3B%5Ctheta%5E%5Cprime_t%29)
 
-* Dueling DQN: ![](https://latex.codecogs.com/png.latex?Q%28s%2Ca%3B%5Ctheta%2C%5Calpha%2C%5Cbeta%29%20%3D%20V%28s%3B%5Ctheta%2C%5Cbeta%29&plus;%28A%28s%2Ca%3B%5Ctheta%2C%5Calpha%29-%5Cfrac%7B1%7D%7B%5Cmathcal%7BA%7D%7D%5Csum_%7Ba%27%7DA%28s%2Ca%27%3B%5Ctheta%2C%5Calpha%29%29)
+* Dueling DQN: ![](https://latex.codecogs.com/png.latex?%5Cinline%20Q%28s%2Ca%3B%5Ctheta%2C%5Calpha%2C%5Cbeta%29%20%3D%20V%28s%3B%5Ctheta%2C%5Cbeta%29&plus;%28A%28s%2Ca%3B%5Ctheta%2C%5Calpha%29-%5Cfrac%7B1%7D%7B%5Cmathcal%7BA%7D%7D%5Csum_%7Ba%27%7DA%28s%2Ca%27%3B%5Ctheta%2C%5Calpha%29%29)
 
 ### Implementation for Double and Dueling DQN
 
