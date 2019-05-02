@@ -4,6 +4,8 @@ In this project, we compare performance of DQN, Double DQN, Dueling DQN, and Due
 
 Group Members: Xin-Ling Bai, Hung-Ting Chen, Lin-Ying Cheng, Tsun-Hsu Lee, Hsuan-Chu Lin, Shih-Chen Lin
 
+![](img/demo.gif)  
+
 ---
 
 ## Testing Environment
